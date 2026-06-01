@@ -1,10 +1,10 @@
 import string 
 import getpass
 
-def check_passWord():
+def check_Password():
     password = getpass.getpass("Enter your password: ")
     strength = 0
-    changeNeeded = ""
+    feedback = ""
     upper_count = lower_count = special_count = num_count = wspace_count = 0
 
     for char in list(password):
@@ -35,19 +35,46 @@ def check_passWord():
         strength += 1
 
     if strength == 1:
-        changeNeeded = "Very Weak Password - please consider adding more character types to strengthen your password."
+        feedback = "Very Weak Password - please consider adding more character types to strengthen your password."
     elif strength == 2:
-        changeNeeded = "Weak Password - please consider adding more character types to strengthen your password."
+        feedback = "Weak Password - please consider adding more character types to strengthen your password."
     elif strength == 3:
-        changeNeeded = "Moderate Password - please consider adding more character types to strengthen your password."
+        feedback = "Moderate Password - please consider adding more character types to strengthen your password."
     elif strength == 4:
-        changeNeeded = "Strong Password - good job! Consider adding more character types for an even stronger password."
+        feedback = "Strong Password - good job! Consider adding more character types for an even stronger password."
     else:
-        changeNeeded = "Very Strong Password - great job!"
-
-
+        feedback = "Very Strong Password - great job!"
 
     print(f"Password Strength: {strength}/5")
-    print(f"Feedback: {changeNeeded}")
+    print(f"Feedback: {feedback}")
 
-check_passWord()
+def askPassword(another_password = False):
+    valid = False
+    if another_password:
+        choice = input("Do you want to enter another password? Entering either yes (y) or no (n): ")
+    else:
+        choice = input("Do you want to start checking your password? Entering either yes (y) or no (n): ")
+
+    while not valid:
+        if choice.lower() == 'y':
+            return True
+        elif choice.lower() == 'n':
+            return False
+        else:
+            print('Invalid input. Please try again and enter either yes (y) or no (n).')
+
+if __name__ == '__main__':
+    print('\n'
+          '\n'
+    'Welcome to the Password Strength Checker!'
+    '\n'
+    '\n'
+    'Enter a password to check its strength and receive a score to see how secure it is.'
+    '\n'
+    '\n'
+    'A strong password should include uppercase and lowercase letters, numbers and special characters.'
+    '\n')
+    
+    ask_password = askPassword()   
+    if ask_password:
+        check_Password()
