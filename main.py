@@ -45,6 +45,8 @@ def check_Password():
     else:
         feedback = "Very Strong Password - great job!"
 
+
+
     print(f"Password Strength: {strength}/5")
     print(f"Feedback: {feedback}")
 
@@ -74,7 +76,9 @@ if __name__ == '__main__':
     '\n'
     'A strong password should include uppercase and lowercase letters, numbers and special characters.'
     '\n')
-    
+
     ask_password = askPassword()   
-    if ask_password:
+
+    while ask_password:
         check_Password()
+        ask_password = askPassword(True)
