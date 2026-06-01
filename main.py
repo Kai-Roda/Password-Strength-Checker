@@ -34,6 +34,9 @@ def check_Password():
     if special_count >= 1:
         strength += 1
 
+    if len(password) >= 8:
+        strength += 1
+
     if strength == 1:
         feedback = "Very Weak Password - please consider adding more character types to strengthen your password."
     elif strength == 2:
@@ -42,12 +45,12 @@ def check_Password():
         feedback = "Moderate Password - please consider adding more character types to strengthen your password."
     elif strength == 4:
         feedback = "Strong Password - good job! Consider adding more character types for an even stronger password."
-    else:
+    elif strength == 5:
         feedback = "Very Strong Password - great job!"
+    else:
+        feedback = "Excellent Password - you're a security expert!"
 
-
-
-    print(f"Password Strength: {strength}/5")
+    print(f"Password Strength: {strength}/6")
     print(f"Feedback: {feedback}")
 
 def askPassword(another_password = False):
@@ -58,9 +61,9 @@ def askPassword(another_password = False):
         choice = input("Do you want to start checking your password? Entering either yes (y) or no (n): ")
 
     while not valid:
-        if choice.lower() == 'y':
+        if choice.lower() in ['y']:
             return True
-        elif choice.lower() == 'n':
+        elif choice.lower() in ['n']:
             return False
         else:
             print('Invalid input. Please try again and enter either yes (y) or no (n).')
