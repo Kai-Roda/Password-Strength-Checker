@@ -2,7 +2,13 @@ import string
 import getpass
 
 def check_Password():
+
     password = getpass.getpass("Enter your password: ")
+
+    if check_common_password(password):
+        print("This password is very commonly used and insecure.")
+        return
+
     strength = 0
     feedback = ""
     upper_count = lower_count = special_count = num_count = wspace_count = 0
@@ -18,21 +24,6 @@ def check_Password():
             wspace_count += 1
         else:
             special_count += 1
-
-    if lower_count >= 1:
-        strength += 1
-
-    if upper_count >= 1:
-        strength += 1
-
-    if num_count >= 1:
-        strength += 1
-
-    if wspace_count >= 1:
-        strength += 1
-
-    if special_count >= 1:
-        strength += 1
 
     if len(password) >= 8:
         strength += 1
@@ -52,6 +43,20 @@ def check_Password():
 
     print(f"Password Strength: {strength}/6")
     print(f"Feedback: {feedback}")
+    
+def check_common_password(password):
+    try:
+        with open("common_passwords.txt", "r") as file:
+            common_passwords = [line.strip() for line in file]
+
+        if password.lower() in common_passwords:
+            return True
+        else:
+            return False
+
+    except FileNotFoundError:
+        print("common_passwords.txt file not found.")
+        return False
 
 def askPassword(another_password = False):
     valid = False
@@ -85,3 +90,5 @@ if __name__ == '__main__':
     while ask_password:
         check_Password()
         ask_password = askPassword(True)
+        
+        
