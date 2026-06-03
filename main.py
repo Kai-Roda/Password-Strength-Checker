@@ -43,7 +43,7 @@ def check_Password():
 
     print(f"Password Strength: {strength}/6")
     print(f"Feedback: {feedback}")
-    
+
 def check_common_password(password):
     try:
         with open("common_passwords.txt", "r") as file:
@@ -66,9 +66,9 @@ def askPassword(another_password = False):
         choice = input("Do you want to start checking your password? Entering either yes (y) or no (n): ")
 
     while not valid:
-        if choice.lower() in ['y']:
+        if choice.lower() in ['y', 'yes']:
             return True
-        elif choice.lower() in ['n']:
+        elif choice.lower() in ['n', 'no']:
             return False
         else:
             print('Invalid input. Please try again and enter either yes (y) or no (n).')
