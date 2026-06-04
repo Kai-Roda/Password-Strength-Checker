@@ -23,25 +23,49 @@ def check_Password():
         elif char in string.whitespace:
             wspace_count += 1
         else:
-            special_count += 1
+            special_count += 1 
 
-    if len(password) >= 8:
+    if lower_count >= 1:
+        strength += 1
+
+    if upper_count >= 1:
+        strength += 1
+
+    if num_count >= 1:
+        strength += 1
+
+    if special_count >= 1:
+        strength += 1
+
+    if wspace_count >= 1:
         strength += 1
 
     if strength == 1:
-        feedback = "Very Weak Password - please consider adding more character types to strengthen your password."
+        feedback = "Very Weak Password"
     elif strength == 2:
-        feedback = "Weak Password - please consider adding more character types to strengthen your password."
+        feedback = "Weak Password"
     elif strength == 3:
-        feedback = "Moderate Password - please consider adding more character types to strengthen your password."
+        feedback = "Moderate Password"
     elif strength == 4:
-        feedback = "Strong Password - good job! Consider adding more character types for an even stronger password."
+        feedback = "Strong Password"
     elif strength == 5:
-        feedback = "Very Strong Password - great job!"
+        feedback = "Very Strong Password"
     else:
-        feedback = "Excellent Password - you're a security expert!"
+        feedback = "Extremely Strong Password"
 
-    print(f"Password Strength: {strength}/6")
+    if len(password) >= 8:
+        strength += 1
+    else:
+        feedback = "Password should be at least 8 characters long."
+
+    print("\nYour password contains:")
+    print(f"{upper_count} uppercase letters")
+    print(f"{lower_count} lowercase letters")
+    print(f"{num_count} numeric characters")
+    print(f"{special_count} special characters")
+    print(f"{wspace_count} whitespace characters")
+
+    print(f"\nPassword Strength: {strength}/6")
     print(f"Feedback: {feedback}")
 
 def check_common_password(password):
@@ -68,7 +92,7 @@ def askPassword(another_password = False):
     while not valid:
         if choice.lower() in ['y', 'yes']:
             return True
-        elif choice.lower() in ['n', 'no']:
+        elif choice.lower() in ['n','no']:
             return False
         else:
             print('Invalid input. Please try again and enter either yes (y) or no (n).')
@@ -90,5 +114,5 @@ if __name__ == '__main__':
     while ask_password:
         check_Password()
         ask_password = askPassword(True)
-        
-        
+
+    print("\nThank you for using the Password Strength Checker. Stay safe online!")
