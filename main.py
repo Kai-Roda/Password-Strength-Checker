@@ -1,6 +1,7 @@
 from ast import For
 import string 
 import getpass
+import time
 
 BLUE = '\033[34m'
 GREEN = '\033[32m'
@@ -15,6 +16,12 @@ print(BLUE + "|" + " " * 66 + "|" + RESET)
 print(BLUE + "|" + " " * 66 + "|" + RESET)
 
 def check_Password():
+
+    print(YELLOW + "Ready..?" + RESET)
+    time.sleep(1)
+    print(YELLOW + "Here you go!" + RESET)
+    time.sleep(1)
+    
 
     password = getpass.getpass("Enter your password: ")
 
