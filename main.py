@@ -4,8 +4,9 @@ import getpass
 
 BLUE = '\033[34m'
 GREEN = '\033[32m'
-RESET = '\033[0m' # Resets terminal back to default color
+RESET = '\033[0m'
 RED = '\033[31m'
+YELLOW = '\033[33m'
 
 print(BLUE + "_" * 68 + RESET)
 print(BLUE + "|" + " " * 66 + "|" + RESET)
@@ -70,15 +71,15 @@ def check_Password():
     else:
         feedback = "Password should be at least 8 characters long."
 
-    print("\nYour password contains:")
+    print(BLUE +"\nYour password contains:")
     print(f"{upper_count} uppercase letters")
     print(f"{lower_count} lowercase letters")
     print(f"{num_count} numeric characters")
     print(f"{special_count} special characters")
-    print(f"{wspace_count} whitespace characters")
+    print(f"{wspace_count} whitespace characters" + RESET)
 
-    print(f"\nPassword Strength: {strength}/6")
-    print(f"Feedback: {feedback}")
+    print(YELLOW + f"\nPassword Strength: {strength}/6")
+    print(f"Feedback: {feedback}" + RESET)
 
 def check_common_password(password):
     try:
@@ -97,9 +98,9 @@ def check_common_password(password):
 def askPassword(another_password = False):
     valid = False
     if another_password:
-        choice = input("Do you want to enter another password? Entering either yes (y) or no (n): ")
+        choice = input(BLUE + "Do you want to enter another password? Entering either yes (y) or no (n): " + RESET)
     else:
-        choice = input("Do you want to start checking your password? Entering either yes (y) or no (n): ")
+        choice = input(BLUE + "Do you want to start checking your password? Entering either yes (y) or no (n): " + RESET)
 
     while not valid:
         if choice.lower() in ['y', 'yes']:
@@ -107,7 +108,7 @@ def askPassword(another_password = False):
         elif choice.lower() in ['n','no']:
             return False
         else:
-            print('Invalid input. Please try again and enter either yes (y) or no (n).')
+            print(RED + 'Invalid input. Please try again and enter either yes (y) or no (n).' + RESET)
 
 if __name__ == '__main__':
     print('\n'
@@ -115,10 +116,9 @@ if __name__ == '__main__':
     'Welcome to the Password Strength Checker!'
     '\n'
     '\n'
-    'Enter a password to check its strength and receive a score to see how secure it is.'
+    'Enter a password ---> receive a score of its strength!'
     '\n'
-    '\n'
-    'A strong password should include uppercase and lowercase letters, numbers and special characters.'
+
     '\n')
 
     ask_password = askPassword()   
@@ -127,4 +127,4 @@ if __name__ == '__main__':
         check_Password()
         ask_password = askPassword(True)
 
-    print("\nThank you for using the Password Strength Checker. Stay safe online!")
+    print(BLUE + "\nThank you for using the Password Strength Checker. Stay safe online!" + RESET)
