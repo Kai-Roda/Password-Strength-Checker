@@ -1,5 +1,17 @@
+from ast import For
 import string 
 import getpass
+
+BLUE = '\033[34m'
+GREEN = '\033[32m'
+RESET = '\033[0m' # Resets terminal back to default color
+RED = '\033[31m'
+
+print(BLUE + "_" * 68 + RESET)
+print(BLUE + "|" + " " * 66 + "|" + RESET)
+print(BLUE + "|" + "                  " + GREEN +" PASSWORD STRENGTH CHECKER " + BLUE + "                     " + "|" + RESET)
+print(BLUE + "|" + " " * 66 + "|" + RESET)
+print(BLUE + "|" + " " * 66 + "|" + RESET)
 
 def check_Password():
 
